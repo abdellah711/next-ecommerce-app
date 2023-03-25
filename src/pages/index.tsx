@@ -1,5 +1,8 @@
 import CategoryCard from "@/components/home/categories/CategoryCard";
 import Slider from "@/components/home/slider/Slider";
+import ProductCard from "@/components/shared/products/ProductCard";
+import ProductsCarousel from "@/components/shared/products/ProductsCarousel";
+import ProductsList from "@/components/shared/products/ProductsList";
 
 export default function Home() {
   return (
@@ -11,12 +14,25 @@ export default function Home() {
       </Slider>
 
       <div className="my-12">
-        
-        <div className="grid md:grid-cols-2 content gap-12">
-          <CategoryCard title="HEADPHONES"  subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
-          <CategoryCard title="HEADPHONES"  subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
+
+        <div className="flex flex-wrap content gap-12">
+          <CategoryCard title="HEADPHONES" subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
+          <CategoryCard title="HEADPHONES" subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
         </div>
 
+
+        <div className="content">
+          <h2 className="text-3xl font-semibold text-center my-12 text-slate-700">FEATURED PRODUCTS</h2>
+          <ProductsList className="my-5">
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} link={'#'} />
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+          </ProductsList>
+          
+        </div>
 
       </div>
     </>
