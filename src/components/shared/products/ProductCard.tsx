@@ -13,7 +13,7 @@ const ProductCard = ({ title, image, price, oldPrice, link }: Props) => {
     const discount = oldPrice && Math.round((1 - price / oldPrice) * 100)
 
     return (
-        <Link href={link} className="p-3 flex flex-col gap-2 relative bg-zinc-50 embla__slide flex-shrink-0 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 ">
+        <Link href={link} className="p-3 flex flex-col gap-2 relative bg-zinc-50 rounded-md embla__slide flex-shrink-0 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 ">
             {oldPrice && (<p className="absolute right-4 top-4 bg-red-50/90 text-red-500 px-1 py-0.5">-{discount}%</p>)}
             <img
                 src={image}
