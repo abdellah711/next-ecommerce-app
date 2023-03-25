@@ -30,7 +30,7 @@ const Slider = ({ children }: PropsWithChildren) => {
                 {children}
             </div>
 
-            <button className="absolute left-7 bottom-1/2 -translate-y-1/2 animate-pulse" onClick={() => api?.scrollPrev()}>
+            <button className="absolute left-7 bottom-1/2 -translate-y-1/2" onClick={() => api?.scrollPrev()}>
                 <LeftArrowIcon className="w-7" />
             </button>
 

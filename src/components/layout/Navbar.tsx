@@ -6,8 +6,8 @@ import UserIcon from "@heroicons/react/24/solid/UserIcon";
 
 export default function Navbar() {
     return (
-        <nav className="sticky top-0 border-b shadow-sm w-screen bg-white z-40">
-            <div className="flex justify-between items-center max-w-6xl mx-auto py-3 px-6">
+        <nav className="sticky top-0 inset-y-0 border-b shadow-sm bg-white z-40">
+            <div className="flex justify-between items-center py-3 content">
                 <Link href="/" className="text-2xl font-bold">PHONE</Link>
                 <ul className="flex gap-5 p-2 text-zinc-600">
                     <li>

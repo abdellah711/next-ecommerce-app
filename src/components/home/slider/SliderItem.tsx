@@ -16,7 +16,7 @@ export default function SliderItem({ title, description, subTitle, image, link =
     return (
         <div className="embla__slide flex-shrink-0 basis-full min-w-screen">
             <div className={clsx(
-                'max-w-6xl flex justify-between mx-auto px-6 py-12 flex-col gap-y-5 gap-x-2',
+                'content flex justify-between py-12 flex-col gap-y-5 gap-x-2',
                 'md:flex-row '
             )}>
                 <div className='flex flex-col justify-center items-center text-center md:text-left md:items-start gap-5'>
