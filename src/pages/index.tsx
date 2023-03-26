@@ -1,5 +1,6 @@
 import CategoryCard from "@/components/home/categories/CategoryCard";
 import FeaturesList from "@/components/home/features/FeaturesList";
+import NewsLetterForm from "@/components/home/newsletter/NewsLetterForm";
 import Slider from "@/components/home/slider/Slider";
 import ProductCard from "@/components/shared/products/ProductCard";
 import ProductsCarousel from "@/components/shared/products/ProductsCarousel";
@@ -35,7 +36,7 @@ export default function Home() {
 
           <h2 className="text-3xl font-semibold text-center my-12 text-slate-700">ALL PRODUCTS</h2>
           <ProductsList className="my-5">
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
+            <ProductCard title="Nokia 3310" image="https://upload.wikimedia.org/wikipedia/commons/7/78/Nokia_3310_Blue_R7309170_%28retouch%29.png" price={500} oldPrice={1000} link={'#'} />
             <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
             <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
             <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} link={'#'} />
@@ -45,7 +46,7 @@ export default function Home() {
         </div>
 
         <FeaturesList />
-
+        <NewsLetterForm />
       </div>
     </>
   )
