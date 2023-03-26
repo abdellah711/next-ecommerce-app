@@ -2,8 +2,6 @@ import React, { PropsWithChildren } from 'react'
 
 import useEmblaCarousel from 'embla-carousel-react'
 
-type Props = {}
-
 const ProductsCarousel = ({ children }: PropsWithChildren) => {
     const [carouselRef,] = useEmblaCarousel({ align: 'start'})
 

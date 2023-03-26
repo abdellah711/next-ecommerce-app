@@ -13,11 +13,13 @@ const FEATURES = [
 
 export default function FeaturesList() {
     return (
-        <div className='flex gap-12 bg-gray-100 py-12 justify-center'>
-            {FEATURES.map(({ title, Icon }, i) => (<div key={i} className="flex flex-col items-center gap-3">
-                <Icon className='w-14  bg-white p-2 rounded-full'/>
-                <p>{title}</p>
-            </div>))}
+        <div className="bg-gray-100">
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-16 py-12 content'>
+                {FEATURES.map(({ title, Icon }, i) => (<div key={i} className="flex flex-col items-center gap-3 text-center">
+                    <Icon className='w-14  bg-white p-2 rounded-full'/>
+                    <p>{title}</p>
+                </div>))}
+            </div>
         </div>
     )
 }
