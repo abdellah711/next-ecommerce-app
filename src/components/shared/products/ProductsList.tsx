@@ -11,9 +11,12 @@ export default function ProductsList({ className, products, ...props }: Componen
             className
         )} {...props}>
             {
-                products?.map(({ id, attributes: { title, price, old_price, featured_image } }) => (
-                    <ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />
-                ))
+                products?.length > 0 ?
+                    products?.map(({ id, attributes: { title, price, old_price, featured_image } }) => (
+                        <ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />
+                    ))
+                    :
+                    <div className="text-center text-xl text-slate-400 py-12">No products found</div>
             }
         </div>
     )

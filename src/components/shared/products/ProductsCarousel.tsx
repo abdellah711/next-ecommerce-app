@@ -6,7 +6,7 @@ import ProductCard from './ProductCard'
 const ProductsCarousel = ({ products }: { products: Product[] }) => {
     const [carouselRef,] = useEmblaCarousel({ dragFree: true, containScroll: 'keepSnaps', })
 
-    return (
+    return products?.length > 0 ? (
         <div className='embla overflow-hidden' ref={carouselRef}>
             <div className='embla__container flex gap-5'>
                 {
@@ -16,7 +16,7 @@ const ProductsCarousel = ({ products }: { products: Product[] }) => {
                 }
             </div>
         </div>
-    )
+    ): <div className="text-center text-xl text-slate-400 py-12">No products found</div>
 }
 
 export default ProductsCarousel

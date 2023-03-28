@@ -3,13 +3,14 @@ import ProductsCarousel from "@/components/shared/products/ProductsCarousel";
 import { useState } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from "next";
 import { api } from "@/services/api";
-import { ProductDetails } from "@/types/product";
+import { Product, ProductDetails } from "@/types/product";
 import { urlFor } from "@/utils/img";
 import ProductDetailsTabs from "@/components/product/ProductDetailsTabs";
 import ProductInfo from "@/components/product/ProductInfo";
 
 const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
-    product
+    product,
+    relatedProducts
 }) => {
 
     return (
@@ -22,7 +23,7 @@ const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProp
             <ProductDetailsTabs description={product.attributes.description} />
 
             <h2 className="text-2xl text-center font-medium text-slate-600 my-6">Related Products</h2>
-            <ProductsCarousel products={[]} />
+            <ProductsCarousel products={relatedProducts} />
         </div>
     )
 }
@@ -30,10 +31,12 @@ const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProp
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const id = context.params?.id
-    const { data: product } = await api<ProductDetails>(`/products/${id}?populate=images`)
+    const { data: product } = await api<ProductDetails>(`/products/${id}?populate=images,category`)
+    const {data: relatedProducts} = await api<Product[]>(`/products/?filters[category][id][$eq]=${product.attributes.category?.data.id}&f&pagination[pageSize]=12&filters[id][$ne]=${product.id}&populate=featured_image`)
     return {
         props: {
-            product
+            product,
+            relatedProducts
         }
     }
 }
