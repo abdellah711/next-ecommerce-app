@@ -66,13 +66,7 @@ export default function ProductPage() {
             </Tab.Group>
 
             <h2 className="text-2xl text-center font-medium text-slate-600 my-6">Related Products</h2>
-            <ProductsCarousel>
-                <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-                <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-                <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-                <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-
-            </ProductsCarousel>
+            <ProductsCarousel products={[]}/>
         </div>
     )
 }

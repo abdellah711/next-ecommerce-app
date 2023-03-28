@@ -1,14 +1,19 @@
-import React, { PropsWithChildren } from 'react'
-
+import { Product } from '@/types/product'
+import { urlFor } from '@/utils/img'
 import useEmblaCarousel from 'embla-carousel-react'
+import ProductCard from './ProductCard'
 
-const ProductsCarousel = ({ children }: PropsWithChildren) => {
-    const [carouselRef,] = useEmblaCarousel({ dragFree: true, containScroll: 'keepSnaps',})
+const ProductsCarousel = ({ products }: { products: Product[] }) => {
+    const [carouselRef,] = useEmblaCarousel({ dragFree: true, containScroll: 'keepSnaps', })
 
     return (
         <div className='embla overflow-hidden' ref={carouselRef}>
             <div className='embla__container flex gap-5'>
-                {children}
+                {
+                    products?.map(({ id, attributes: { title, price, old_price, featured_image } }) => (
+                        <ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />
+                    ))
+                }
             </div>
         </div>
     )
