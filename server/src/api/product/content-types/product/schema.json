@@ -61,6 +61,12 @@
     },
     "old_price": {
       "type": "decimal"
+    },
+    "colors": {
+      "type": "json"
+    },
+    "sizes": {
+      "type": "json"
     }
   }
 }

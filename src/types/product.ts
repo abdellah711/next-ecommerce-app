@@ -21,6 +21,8 @@ interface ProductAttributes {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    colors?: string[];
+    sizes?: string[]; 
     featured_image: {
         data: Image;
     }

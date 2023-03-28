@@ -21,12 +21,14 @@ export default function ProductInfo({ product }: Props) {
                 <Rating rating={4.5} />
                 <span className="text-zinc-600">(3 Reviews)</span>
             </div>
-            <p className="text-xl md:text-2xl font-medium text-red-500">{formatCurrency(product.attributes.price)}</p>
+            <p className="text-xl md:text-2xl font-medium text-red-500">
+                {formatCurrency(product.attributes.price)}
+                {product.attributes.old_price && (<span className="ml-3 text-base text-zinc-400 font-normal line-through">{formatCurrency(product.attributes.old_price)}</span>)}
+            </p>
             <p className="text-zinc-600 ">{product.attributes.short_description}</p>
             <div className="flex flex-wrap gap-3 my-2">
-                <ProductOptions label="Size" options={['Small', 'Medium', 'Large']} />
-                <ProductOptions label="Size" options={['Small', 'Medium', 'Large']} />
-                <ProductOptions label="Size" options={['Small', 'Medium', 'Large']} />
+                {product.attributes.colors && (<ProductOptions label="Colors" options={product.attributes.colors} />)}
+                {product.attributes.sizes && (<ProductOptions label="Sizes" options={product.attributes.sizes} />)}
             </div>
             <Counter count={quantity} onCountChange={setQuantity} min={1} max={product.attributes.stock} />
             <p className="text-green-500">In Stock ({product.attributes.stock} items)</p>
