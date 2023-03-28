@@ -1,15 +1,16 @@
+import Link from 'next/link'
 import React from 'react'
 
 type Props = {
     title: string,
-    subTitle: string,
+    subTitle?: string,
     image: string,
     link: string,
 }
 
 export default function CategoryCard({ image, link, subTitle, title }: Props) {
     return (
-        <a href="#" className='flex flex-col sm:flex-row items-center gap-12 p-5 bg-gray-100 flex-grow rounded hover:shadow-lg active:scale-95 transition'>
+        <Link href="#" className='flex flex-col sm:flex-row items-center gap-12 p-5 bg-gray-100 flex-grow rounded hover:shadow-lg active:scale-95 transition'>
             <img
                 src={image}
                 alt={title}
@@ -19,6 +20,6 @@ export default function CategoryCard({ image, link, subTitle, title }: Props) {
                 <p className='text-lg'>{subTitle}</p>
                 <h3 className='text-3xl font-semibold'>{title}</h3>
             </div>
-        </a>
+        </Link>
     )
 }

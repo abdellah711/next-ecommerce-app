@@ -6,48 +6,75 @@ import Slider from "@/components/home/slider/Slider";
 import ProductCard from "@/components/shared/products/ProductCard";
 import ProductsCarousel from "@/components/shared/products/ProductsCarousel";
 import ProductsList from "@/components/shared/products/ProductsList";
+import { api } from "@/services/api";
+import { Category } from "@/types/category";
+import { Product } from "@/types/product";
+import { InferGetServerSidePropsType, NextPage } from "next";
+import axios from 'axios'
+import { urlFor } from "@/utils/img";
+import { Slide } from "@/types/slide";
 
-export default function Home() {
+
+const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
+  slides,
+  products,
+  featuredProducts,
+  featuredCategories,
+}) => {
   return (
     <div>
       <Slider>
-        <Slider.SliderItem title="PHONES MADE FOR YOU!" subTitle="New Inspiration 2023" description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel luctus tincidunt, nisl nisl aliquet nisl, nec lacinia nisl lorem eget dolor. Sed euismod, nisl vel luctus tincidunt" image="http://127.0.0.1:5500/phone_website/images/banner_01.png" />
-        <Slider.SliderItem title="PHONES MADE FOR YOU!" subTitle="New Inspiration 2023" description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel luctus tincidunt, nisl nisl aliquet nisl, nec lacinia nisl lorem eget dolor. Sed euismod, nisl vel luctus tincidunt" image="http://127.0.0.1:5500/phone_website/images/banner_01.png" />
-        <Slider.SliderItem title="PHONES MADE FOR YOU!" subTitle="New Inspiration 2023" description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel luctus tincidunt, nisl nisl aliquet nisl, nec lacinia nisl lorem eget dolor. Sed euismod, nisl vel luctus tincidunt" image="http://127.0.0.1:5500/phone_website/images/banner_01.png" />
+        {slides?.map(({ id, attributes: { title, sub_title, description, image } }) => (
+          <Slider.SliderItem key={id} title={title} subTitle={sub_title} description={description} image={urlFor(image?.data.attributes.url!)} />
+        ))}
       </Slider>
 
 
-        <div className="flex flex-wrap content gap-12 my-12">
-          <CategoryCard title="HEADPHONES" subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
-          <CategoryCard title="HEADPHONES" subTitle="New Colors Introduced" image="http://localhost:5500/phone_website/images/collection_02.png" link="#" />
-        </div>
+      <div className="flex flex-wrap content gap-12 my-12">
+        {
+          featuredCategories?.map(({ id, attributes: { name, subtitle, image } }) => (<CategoryCard key={id} title={name} subTitle={subtitle} link="#" image={urlFor(image?.data.attributes.url!)} />))
+        }
+      </div>
 
 
-        <Section title="Featured Products">
-          <ProductsCarousel>
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-          </ProductsCarousel>
-        </Section>
+      <Section title="Featured Products">
+        <ProductsCarousel>
+          {featuredProducts?.map(({ id, attributes: { title, price, old_price, featured_image } }) => (<ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />))}
+        </ProductsCarousel>
+      </Section>
 
-        <Section title="All Products">
+      <Section title="All Products">
+        <ProductsList className="my-5">
+          {products?.map(({ id, attributes: { title, price, old_price, featured_image } }) => (<ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />))}
+        </ProductsList>
+      </Section>
 
-          <ProductsList className="my-5">
-            <ProductCard title="Nokia 3310" image="https://upload.wikimedia.org/wikipedia/commons/7/78/Nokia_3310_Blue_R7309170_%28retouch%29.png" price={500} oldPrice={1000} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-            <ProductCard title="Apple iPhone 13" image="http://localhost:5500/phone_website/images/products/iphone/iphone3.jpeg" price={999} oldPrice={1200} link={'#'} />
-          </ProductsList>
-        </Section>
-
-        <FeaturesList />
-        <NewsLetterForm />
+      <FeaturesList />
+      <NewsLetterForm />
     </div>
   )
 }
+
+
+export const getServerSideProps = async () => {
+  const test = await axios.get('http://localhost:3000/api/hello');
+
+  const responses = await Promise.all([
+    api<Slide[]>('/slides?populate=image'),
+    api<Product[]>('/products?filters[featured][$eq]=false&&populate=featured_image'),
+    api<Product[]>('/products?filters[featured][$eq]=true&&populate=featured_image'),
+    api<Category[]>('/categories?filters[featured][$eq]=true&pagination[pageSize]=2&populate=image'),
+  ])
+  const [{ data: slides }, { data: products }, { data: featuredProducts }, { data: featuredCategories }] = responses
+
+  return {
+    props: {
+      slides,
+      products,
+      featuredProducts,
+      featuredCategories
+    }
+  }
+}
+
+export default Home

@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 
 const ProductsCarousel = ({ children }: PropsWithChildren) => {
-    const [carouselRef,] = useEmblaCarousel({ align: 'start'})
+    const [carouselRef,] = useEmblaCarousel({ dragFree: true, containScroll: 'keepSnaps',})
 
     return (
         <div className='embla overflow-hidden' ref={carouselRef}>
