@@ -11,7 +11,7 @@ export default function Navbar() {
                 <Link href="/" className="text-2xl font-bold">PHONE</Link>
                 <ul className="flex gap-5 p-2 text-zinc-600">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li>
                         <a href="#">Categories</a>
