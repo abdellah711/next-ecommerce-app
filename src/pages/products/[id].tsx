@@ -7,6 +7,7 @@ import { Product, ProductDetails } from "@/types/product";
 import { urlFor } from "@/utils/img";
 import ProductDetailsTabs from "@/components/product/ProductDetailsTabs";
 import ProductInfo from "@/components/product/ProductInfo";
+import { Dialog } from '@headlessui/react'
 
 const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
     product,
@@ -31,8 +32,8 @@ const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProp
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const id = context.params?.id
-    const { data: product } = await api<ProductDetails>(`/products/${id}?populate=images,category`)
-    const {data: relatedProducts} = await api<Product[]>(`/products/?filters[category][id][$eq]=${product.attributes.category?.data.id}&f&pagination[pageSize]=12&filters[id][$ne]=${product.id}&populate=featured_image`)
+    const { data: product } = await api<ProductDetails>(`/products/${id}?populate=images,category,featured_image`)
+    const { data: relatedProducts } = await api<Product[]>(`/products/?filters[category][id][$eq]=${product.attributes.category?.data.id}&f&pagination[pageSize]=12&filters[id][$ne]=${product.id}&populate=featured_image`)
     return {
         props: {
             product,

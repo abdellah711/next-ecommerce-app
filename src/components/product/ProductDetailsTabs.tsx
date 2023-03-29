@@ -15,7 +15,7 @@ export default function ProductDetailsTabs({ description }: Props) {
                 <Tab className={({ selected }) => `flex-1 py-2.5 text-lg text-center rounded ${selected ? 'bg-white' : 'text-gray-500'}`}>Reviews</Tab>
                 <Tab className={({ selected }) => `flex-1 py-2.5 text-lg text-center rounded ${selected ? 'bg-white' : 'text-gray-500'}`}>Shipping</Tab>
             </Tab.List>
-            <Tab.Panels>
+            <Tab.Panels className="border-b">
                 <Tab.Panel className="p-5">
                     <ReactMarkdown className="prose max-w-none prose-h1:font-semibold prose-h2:font-semibold">
                         {description}

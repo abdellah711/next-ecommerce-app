@@ -1,3 +1,4 @@
+const formatter = Intl.NumberFormat('en',{style:'currency',currency: 'USD'})
 export const formatCurrency = (value: number) => {
-    return Intl.NumberFormat('en',{style:'currency',currency: 'USD'}).format(value)
+    return formatter.format(value)
 }
