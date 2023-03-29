@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {
     label: string
-    options: string[]
+    options: (string|number)[]
 }
 
 export default function ProductOptions({label,options}: Props) {

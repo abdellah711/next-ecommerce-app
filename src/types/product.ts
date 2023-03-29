@@ -22,7 +22,7 @@ interface ProductAttributes {
     updatedAt: string;
     publishedAt: string;
     colors?: string[];
-    sizes?: string[]; 
+    sizes?: number[];
     featured_image: {
         data: Image;
     }
