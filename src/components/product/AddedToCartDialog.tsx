@@ -26,7 +26,7 @@ export default function AddedToCartDialog({ onClose, openDialog }: Props) {
                 <div className="fixed inset-0 grid place-items-center">
                     <Transition.Child
                         as={Fragment}
-                        enter="duration-200 bounce"
+                        enter="duration-200"
                         enterFrom="opacity-0 scale-95"
                         enterTo="opacity-100 scale-100"
                         leave="ease-in duration-200"
