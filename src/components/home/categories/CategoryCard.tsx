@@ -10,7 +10,7 @@ type Props = {
 
 export default function CategoryCard({ image, link, subTitle, title }: Props) {
     return (
-        <Link href="#" className='flex flex-col sm:flex-row items-center gap-12 p-5 bg-gray-100 flex-grow rounded hover:shadow-lg active:scale-95 transition'>
+        <Link href={link} className='flex flex-col sm:flex-row items-center gap-12 p-5 bg-gray-100 flex-grow rounded hover:shadow-lg active:scale-95 transition'>
             <img
                 src={image}
                 alt={title}

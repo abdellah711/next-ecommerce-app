@@ -9,7 +9,7 @@ export default function CategoriesList({ categories }: Props) {
         <div className="flex flex-wrap content gap-12 my-12">
             {
                 categories?.map(({ id, attributes: { name, subtitle, image } }) => (
-                    <CategoryCard key={id} title={name} subTitle={subtitle} link="#" image={urlFor(image?.data.attributes.url!)} />
+                    <CategoryCard key={id} title={name} subTitle={subtitle} link={`/categories/${id}`} image={urlFor(image?.data.attributes.url!)} />
                 ))
             }
         </div>

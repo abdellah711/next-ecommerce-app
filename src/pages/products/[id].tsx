@@ -19,7 +19,7 @@ const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProp
     return (
         <>
             <Breadcrumbs>
-                <Link href="#">{product.attributes.category?.data.attributes.name}</Link>
+                <Link href={`/categories/${product.attributes?.category?.data.id}`}>{product.attributes.category?.data.attributes.name}</Link>
                 <Link href={`/products/${product.id}`}>{product.attributes.title}</Link>
             </Breadcrumbs>
             <div className="content my-6">
