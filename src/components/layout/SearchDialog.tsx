@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import SearchIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon'
 import { useRouter } from 'next/router'
@@ -13,7 +13,7 @@ type Props = {
 
 export default function SearchDialog({ open = false, onClose }: Props) {
     const [searchQuery, setSearchQuery] = useState('')
-
+    const inputRef = useRef<HTMLInputElement>(null)
     const router = useRouter()
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +23,11 @@ export default function SearchDialog({ open = false, onClose }: Props) {
     }
 
     return (
-        <Transition show={open} as={Fragment}>
+        <Transition
+            show={open}
+            as={Fragment}
+            afterEnter={() => inputRef.current?.focus?.()}
+        >
             <Dialog onClose={onClose} className="relative z-50">
                 <Fade>
                     <Dialog.Overlay className="fixed inset-0 bg-black/10" />
@@ -52,6 +56,7 @@ export default function SearchDialog({ open = false, onClose }: Props) {
                                     className='px-3 py-3 grow outline-none'
                                     value={searchQuery}
                                     onChange={e => setSearchQuery(e.currentTarget.value)}
+                                    ref={inputRef}
                                 />
                             </form>
                         </Dialog.Panel>
