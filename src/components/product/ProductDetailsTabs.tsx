@@ -2,6 +2,9 @@ import { Tab } from '@headlessui/react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import ShippingMarkdown from '@/assets/shipping.md'
+import UserIcon from '@heroicons/react/24/solid/UserIcon'
+import Rating from '../shared/Rating'
+import ReviewsList from './ReviewsList'
 
 type Props = {
     description: string
@@ -22,7 +25,10 @@ export default function ProductDetailsTabs({ description }: Props) {
                     </ReactMarkdown>
                 </Tab.Panel>
                 <Tab.Panel className="p-5">
-                    <p>todo</p>
+                    <div>
+                        <h3 className="text-xl mb-3 font-medium">Reviews</h3>
+                        <ReviewsList/>
+                    </div>
                 </Tab.Panel>
                 <Tab.Panel className="p-5">
                     <ReactMarkdown className="prose max-w-none">
