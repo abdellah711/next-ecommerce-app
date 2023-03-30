@@ -15,7 +15,8 @@ type Props = {
 }
 
 export default function CartItem({ product, color, size, quantity }: Props) {
-    const [changeQuantity, deleteItem] = useCartStore(({ changeQuantity, deleteItem }) => ([changeQuantity, deleteItem]))
+    const changeQuantity = useCartStore(({ changeQuantity }) => changeQuantity)
+    const deleteItem = useCartStore(({ deleteItem }) => deleteItem)
 
     return (
         <li className="flex items-center bg-slate-50 rounded-md p-2 gap-5 relative">

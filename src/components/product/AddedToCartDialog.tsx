@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import Fade from '../shared/transitions/Fade'
 
 type Props = {
     openDialog: boolean
@@ -14,15 +15,9 @@ export default function AddedToCartDialog({ onClose, openDialog }: Props) {
             as={Fragment}
         >
             <Dialog onClose={onClose} className="relative z-50">
-                <Transition.Child
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0">
+                <Fade>
                     <Dialog.Overlay className="fixed inset-0 bg-black/10" />
-                </Transition.Child>
+                </Fade>
                 <div className="fixed inset-0 grid place-items-center">
                     <Transition.Child
                         as={Fragment}
