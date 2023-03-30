@@ -11,6 +11,7 @@ import { InferGetServerSidePropsType, NextPage } from "next";
 import axios from 'axios'
 import { Slide } from "@/types/slide";
 import CategoriesList from "@/components/home/categories/CategoriesList";
+import FeaturedCategories from "@/components/home/categories/FeaturedCategories";
 
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
@@ -18,46 +19,51 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   products,
   featuredProducts,
   featuredCategories,
+  categories,
 }) => {
   return (
     <div>
       <Slider slides={slides} />
 
-      <CategoriesList categories={featuredCategories} />
-
+      <FeaturedCategories categories={featuredCategories} />
       <Section title="Featured Products">
         <ProductsCarousel products={featuredProducts} />
       </Section>
 
+      <Section title="Categories" id="categories">
+        <CategoriesList categories={categories} />
+      </Section>
+
       <Section title="All Products">
-        <ProductsList className="my-5" products={products}/>
+        <ProductsList className="my-5" products={products} />
       </Section>
 
       <FeaturesList />
       <NewsLetterForm />
-      
+
     </div>
   )
 }
 
 
 export const getServerSideProps = async () => {
-  const test = await axios.get('http://localhost:3000/api/hello');
 
   const responses = await Promise.all([
     api<Slide[]>('/slides?populate=image'),
     api<Product[]>('/products?filters[featured][$eq]=false&&populate=featured_image'),
     api<Product[]>('/products?filters[featured][$eq]=true&&populate=featured_image'),
     api<Category[]>('/categories?filters[featured][$eq]=true&pagination[pageSize]=2&populate=image'),
+    api<Category[]>('/categories?populate=image'),
   ])
-  const [{ data: slides }, { data: products }, { data: featuredProducts }, { data: featuredCategories }] = responses
+  const [{ data: slides }, { data: products }, { data: featuredProducts }, { data: featuredCategories }, { data: categories }] = responses
 
   return {
     props: {
       slides,
       products,
       featuredProducts,
-      featuredCategories
+      featuredCategories,
+      categories,
     }
   }
 }

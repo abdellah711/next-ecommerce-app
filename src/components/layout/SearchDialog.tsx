@@ -41,8 +41,8 @@ export default function SearchDialog({ open = false, onClose }: Props) {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-125"
                 >
-                    <div className="fixed inset-0 grid place-items-center">
-                        <Dialog.Panel className="w-full max-w-md px-3">
+                    <div className="fixed inset-0 flex justify-center">
+                        <Dialog.Panel className="w-full max-w-md px-3 mt-[30vh]">
                             <form
                                 className='flex pl-1 rounded bg-white overflow-hidden shadow'
                                 onSubmit={handleSearch}

@@ -25,7 +25,7 @@ const Slider = ({ slides }: { slides: Slide[] }) => {
     }, [api])
 
     return (
-        <div className="embla overflow-hidden flex-1 bg-gray-100 relative cursor-grab" ref={carouselRef}>
+        <div className="embla overflow-hidden flex-1 bg-gray-100 relative cursor-grab active:cursor-grabbing" ref={carouselRef}>
 
             <div className="embla__container flex">
                 {slides.map(({ id, attributes: { title, sub_title, description, image } }) => (
