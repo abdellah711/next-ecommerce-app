@@ -18,6 +18,7 @@ export default function SearchDialog({ open = false, onClose }: Props) {
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        onClose()
         router.push(`/search?q=${searchQuery}`)
     }
 

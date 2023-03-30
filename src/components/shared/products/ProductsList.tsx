@@ -16,7 +16,7 @@ export default function ProductsList({ className, products, ...props }: Componen
                         <ProductCard key={id} title={title} image={urlFor(featured_image.data.attributes.url)} price={price} oldPrice={old_price} link={`/products/${id}`} />
                     ))
                     :
-                    <div className="text-center text-xl text-slate-400 py-12">No products found</div>
+                    <div className="text-center text-xl text-slate-400 py-12 col-start-1 col-end-[-1]">No products found</div>
             }
         </div>
     )
