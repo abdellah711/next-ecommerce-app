@@ -8,6 +8,8 @@ import { urlFor } from "@/utils/img";
 import ProductDetailsTabs from "@/components/product/ProductDetailsTabs";
 import ProductInfo from "@/components/product/ProductInfo";
 import { Dialog } from '@headlessui/react'
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import Link from "next/link";
 
 const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
     product,
@@ -15,17 +17,23 @@ const ProductPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProp
 }) => {
 
     return (
-        <div className="content my-6">
-            <div className="flex gap-9 p-5 flex-col md:flex-row">
-                <ProductImages images={product.attributes.images.data.map(im => urlFor(im.attributes.url))} />
-                <ProductInfo product={product} />
+        <>
+            <Breadcrumbs>
+                <Link href="#">{product.attributes.category?.data.attributes.name}</Link>
+                <Link href={`/products/${product.id}`}>{product.attributes.title}</Link>
+            </Breadcrumbs>
+            <div className="content my-6">
+                <div className="flex gap-9 p-5 flex-col md:flex-row">
+                    <ProductImages images={product.attributes.images.data.map(im => urlFor(im.attributes.url))} />
+                    <ProductInfo product={product} />
+                </div>
+
+                <ProductDetailsTabs description={product.attributes.description} />
+
+                <h2 className="text-2xl text-center font-medium text-slate-600 my-6">Related Products</h2>
+                <ProductsCarousel products={relatedProducts} />
             </div>
-
-            <ProductDetailsTabs description={product.attributes.description} />
-
-            <h2 className="text-2xl text-center font-medium text-slate-600 my-6">Related Products</h2>
-            <ProductsCarousel products={relatedProducts} />
-        </div>
+        </>
     )
 }
 

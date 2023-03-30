@@ -31,7 +31,7 @@ export default function Navbar() {
                     </ul>
 
                     <div className="flex gap-4 items-center">
-                        <Link href="/account" className="border rounded-full p-1">
+                        <Link href="#" className="border rounded-full p-1">
                             <UserIcon className="w-6 aspect-square text-zinc-700" />
                         </Link>
                         <button className="border rounded-full p-1" onClick={() => setOpenSearch(true)}>
