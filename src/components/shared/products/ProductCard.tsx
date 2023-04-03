@@ -18,7 +18,7 @@ const ProductCard = ({ title, image, price, oldPrice, link }: Props) => {
             <img
                 src={image}
                 alt={title}
-                className="aspect-square object-contain group-hover:scale-105 transition"
+                className="aspect-square object-contain mix-blend-multiply group-hover:scale-105 transition"
             />
             <h3 className="text-lg text-zinc-800">{title}</h3>
             <p className="text-orange-500 text-lg font-semibold">${price}

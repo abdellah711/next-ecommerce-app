@@ -27,7 +27,7 @@ export default function SliderItem({ title, description, subTitle, image, link =
                         {linkText}
                     </Link>
                 </div>
-                <img src={image} alt={title} className="max-w-[80%] md:max-w-[40%] max-h-[70vh] mx-auto object-contain" />
+                <img src={image} alt={title} className="max-w-[80%] md:max-w-[40%] max-h-[70vh] h-full w-full p-2 mx-auto object-contain" />
             </div>
         </div>
     )

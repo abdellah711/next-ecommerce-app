@@ -24,7 +24,7 @@ const Slider = ({ slides }: { slides: Slide[] }) => {
         })
     }, [api])
 
-    return (
+    return slides.length > 0 ? (
         <div className="embla overflow-hidden flex-1 bg-gray-100 relative cursor-grab active:cursor-grabbing" ref={carouselRef}>
 
             <div className="embla__container flex">
@@ -51,7 +51,7 @@ const Slider = ({ slides }: { slides: Slide[] }) => {
                     />))}
             </div>
         </div>
-    )
+    ) : null
 }
 
 
